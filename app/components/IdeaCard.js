@@ -82,7 +82,7 @@ const IdeaCard = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 font-semibold">
       {/* Sort & PerPage */}
       <div className="flex justify-between items-center mb-6">
         <div className="text-sm">
@@ -95,7 +95,7 @@ const IdeaCard = () => {
             <select
               value={perPage}
               onChange={(e) => updateQueryParams({ perPage: e.target.value, page: 1 })}
-              className="ml-2 border rounded px-2 py-1"
+              className="ml-2 border rounded-full px-10 py-1"
             >
               {[10, 20, 50].map((size) => (
                 <option key={size} value={size}>
@@ -110,7 +110,7 @@ const IdeaCard = () => {
             <select
               value={sort}
               onChange={(e) => updateQueryParams({ sort: e.target.value, page: 1 })}
-              className="ml-2 border rounded px-2 py-1"
+              className="ml-2 border rounded-full px-4 py-1"
             >
               <option value="-published_at">Newest</option>
               <option value="published_at">Oldest</option>
@@ -126,9 +126,9 @@ const IdeaCard = () => {
         {ideas.map((idea) => (
           <div
             key={idea.id}
-            className="bg-white border rounded-lg shadow-sm overflow-hidden"
+            className="bg-white border border-gray-100 rounded-xl shadow-lg overflow-hidden"
           >
-            <div className="relative w-full aspect-[4/3]">
+            <div className="relative w-full aspect-[5/3]">
               <Image
                 src={idea?.small_image?.url || "/bahan 2.webp"}
                 alt={idea.title}
@@ -138,7 +138,7 @@ const IdeaCard = () => {
                 className="rounded-t"
               />
             </div>
-            <div className="p-3">
+            <div className="pt-4 p-2">
               <p className="text-xs text-gray-500 mb-1 uppercase">
                 {new Date(idea.published_at).toLocaleDateString("id-ID", {
                   day: "numeric",
@@ -146,7 +146,7 @@ const IdeaCard = () => {
                   year: "numeric",
                 })}
               </p>
-              <h2 className="text-sm font-semibold line-clamp-3">{idea.title}</h2>
+              <h2 className="text-sm pb-4 font-semibold line-clamp-3">{idea.title}...</h2>
             </div>
           </div>
         ))}

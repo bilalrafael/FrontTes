@@ -12,16 +12,8 @@ const Header = () => {
 
   const controlNavbar = () => {
     const currentScroll = window.scrollY;
-
-    setIsScrolled(currentScroll > 10); 
-
-    
-    if (currentScroll < lastScrollY) {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-
+    setIsScrolled(currentScroll > 10);
+    setShow(currentScroll < lastScrollY);
     setLastScrollY(currentScroll);
   };
 
@@ -32,77 +24,45 @@ const Header = () => {
     }
   }, [lastScrollY]);
 
+  const navItems = [
+    { label: "Work", href: "/work" },
+    { label: "About", href: "/about" },
+    { label: "Service", href: "/services" },
+    { label: "Ideas", href: "/ideas" },
+    { label: "Careers", href: "/careers" },
+    { label: "Contact", href: "/contact" },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
-        show ? "translate-y-0 bg-white shadow-md" : "-translate-y-full"
+        show ? "translate-y-0" : "-translate-y-full"
       }`}
+      style={{
+        backgroundColor: "#ff6803ce",
+        boxShadow: show ? "0 2px 6px rgba(0,0,0,0.1)" : "none",
+      }}
     >
       <nav className="container mx-auto flex justify-between items-center px-6 py-4 transition-colors duration-300">
         <img
-          src={isScrolled ? "/site-logo.webp" : "/site-logo.webp"}
+          src={isScrolled ? "/site-logo-white.png" : "/site-logo.webp"} // Ganti sesuai kondisi
           alt="Suitmedia Logo"
           className="h-8 transition-all duration-300"
         />
-        <div className="space-x-4">
-          <Link
-            href="/"
-            className={`${
-              pathname === "/" ? "text-orange-600 font-bold" : "text-gray-600"
-            }`}
-          >
-            Work
-          </Link>
-          <Link
-            href="/ideas"
-            className={`${
-              pathname === "/ideas"
-                ? "text-orange-600 font-bold"
-                : "text-gray-600"
-            }`}
-          >
-            About
-          </Link>
-          <Link
-            href="/ideas"
-            className={`${
-              pathname === "/ideas"
-                ? "text-orange-600 font-bold"
-                : "text-gray-600"
-            }`}
-          >
-            Service
-          </Link>
-          <Link
-            href="/ideas"
-            className={`${
-              pathname === "/ideas"
-                ? "text-orange-600 font-bold"
-                : "text-gray-600"
-            }`}
-          >
-            Ideas
-          </Link>
-          <Link
-            href="/ideas"
-            className={`${
-              pathname === "/ideas"
-                ? "text-orange-600 font-bold"
-                : "text-gray-600"
-            }`}
-          >
-            Carrers
-          </Link>
-          <Link
-            href="/ideas"
-            className={`${
-              pathname === "/ideas"
-                ? "text-orange-600 font-bold"
-                : "text-gray-600"
-            }`}
-          >
-            Contact
-          </Link>
+        <div className="space-x-4 flex items-center">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`pb-1 transition-all duration-200 ${
+                pathname === item.href
+                  ? "text-white font-bold border-b-2 border-white"
+                  : "text-white/80 hover:text-white"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       </nav>
     </header>
