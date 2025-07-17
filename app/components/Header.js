@@ -13,10 +13,9 @@ const Header = () => {
   const controlNavbar = () => {
     const currentScroll = window.scrollY;
 
-    // Logo toggle logic
-    setIsScrolled(currentScroll > 10); // ganti logo jika scroll lebih dari 10px
+    setIsScrolled(currentScroll > 10); 
 
-    // Navbar hide/show logic
+    
     if (currentScroll < lastScrollY) {
       setShow(true);
     } else {

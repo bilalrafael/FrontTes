@@ -85,6 +85,10 @@ const IdeaCard = () => {
     <div className="p-4">
       {/* Sort & PerPage */}
       <div className="flex justify-between items-center mb-6">
+        <div className="text-sm">
+          Showing {(page - 1) * perPage + 1} -{" "}
+          {Math.min(page * perPage, totalPages * perPage)} of {totalPages * perPage}
+        </div>
         <div className="flex gap-4">
           <label>
             Show per page:
@@ -114,10 +118,7 @@ const IdeaCard = () => {
           </label>
         </div>
 
-        <div className="text-sm">
-          Showing {(page - 1) * perPage + 1} -{" "}
-          {Math.min(page * perPage, totalPages * perPage)} of {totalPages * perPage}
-        </div>
+        
       </div>
 
       {/* Grid Cards */}
