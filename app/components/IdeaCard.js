@@ -31,11 +31,13 @@ const IdeaCard = () => {
         setIdeas(data.data);
         setTotalPages(Math.ceil(data.meta.total / perPage));
       } catch (err) {
-        console.error(err);
+        console.error("Gagal fetch ideas:", err);
       }
     };
+
     getIdeas();
   }, [page, perPage, sort]);
+
 
   const renderPagination = () => {
     const pagesToShow = 5;
@@ -117,11 +119,8 @@ const IdeaCard = () => {
             </select>
           </label>
         </div>
-
-        
       </div>
-
-      {/* Grid Cards */}
+      {/* Card  */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {ideas.map((idea) => (
           <div
@@ -130,7 +129,7 @@ const IdeaCard = () => {
           >
             <div className="relative w-full aspect-[5/3]">
               <Image
-                src={idea?.small_image?.url || "/bahan 2.webp"}
+                src={idea?.small_image?.[0]?.url || "/bahan 2.webp"}
                 alt={idea.title}
                 fill
                 loading="lazy"

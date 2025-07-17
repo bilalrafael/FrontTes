@@ -15,21 +15,23 @@ const Banner = () => {
 
   useEffect(() => {
     const loadImage = async () => {
-      try {
-        // Ambil satu data terbaru
-        const response = await fetchIdeas({ page: 1, size: 1, sort: "-published_at" });
-        const idea = response.data?.[0];
-        const imageUrl = idea?.medium_image?.url;
+  try {
+    const response = await fetchIdeas({ page: 1, size: 1, sort: "-published_at" });
+    const idea = response.data?.[0];
+    const imageUrl = idea?.medium_image?.[0]?.url;
 
-        if (imageUrl) {
-          setBgImage(imageUrl);
-        } else {
-          console.warn("Gambar medium_image tidak ditemukan.");
-        }
-      } catch (error) {
-        console.error("Failed to fetch image for banner:", error);
-      }
-    };
+    console.log("Banner image URL:", imageUrl);
+
+    if (imageUrl) {
+      setBgImage(imageUrl);
+    } else {
+      console.warn("Gambar medium_image tidak ditemukan.");
+    }
+  } catch (error) {
+    console.error("Failed to fetch image for banner:", error);
+  }
+};
+
 
     loadImage();
   }, []);
@@ -56,7 +58,7 @@ const Banner = () => {
       </div>
 
       <div className="absolute bottom-0 left-0 w-full h-40 z-0 overflow-hidden">
-        <div className="w-full h-full bg-gray-200 -skew-y-6 transform origin-top-right" />
+        <div className="w-full h-full bg-white -skew-y-6 transform origin-top-right" />
       </div>
     </section>
   );

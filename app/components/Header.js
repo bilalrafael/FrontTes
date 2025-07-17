@@ -39,13 +39,13 @@ const Header = () => {
         show ? "translate-y-0" : "-translate-y-full"
       }`}
       style={{
-        backgroundColor: "#ff6803ce",
+        backgroundColor: isScrolled ? "#ffffff" : "#ee7845",
         boxShadow: show ? "0 2px 6px rgba(0,0,0,0.1)" : "none",
       }}
     >
       <nav className="container mx-auto flex justify-between items-center px-6 py-4 transition-colors duration-300">
         <img
-          src={isScrolled ? "/site-logo-white.png" : "/site-logo.webp"} // Ganti sesuai kondisi
+          src={isScrolled ? "/site-logo.webp" : "/site-logo-white.png"}
           alt="Suitmedia Logo"
           className="h-8 transition-all duration-300"
         />
@@ -56,7 +56,11 @@ const Header = () => {
               href={item.href}
               className={`pb-1 transition-all duration-200 ${
                 pathname === item.href
-                  ? "text-white font-bold border-b-2 border-white"
+                  ? isScrolled
+                    ? "text-[#ee7845] font-bold border-b-2 border-[#ee7845]"
+                    : "text-white font-bold border-b-2 border-white"
+                  : isScrolled
+                  ? "text-[#ee7845]/80 hover:text-[#ee7845]"
                   : "text-white/80 hover:text-white"
               }`}
             >
